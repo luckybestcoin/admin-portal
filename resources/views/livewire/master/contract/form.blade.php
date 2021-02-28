@@ -1,12 +1,13 @@
 <div>
-    <!-- page body start -->
-    <div class="page-body">
-        <div class="row">
-            <div class="col-sm-12">
+    <section class="content">
+        <div class="container-fluid">
                 <!-- Session Idle Timeout card start -->
                 <form wire:submit.prevent="submit">
                     <div class="card">
-                        <div class="card-block">
+                        <div class="card-header">
+                            <h3 class="card-title">Form</h3>
+                        </div>
+                        <div class="card-body">
                             <div class="form-group">
                                 <label>Nama Paket</label>
                                 <input type="text" class="form-control" wire:model.defer="nama_paket" autocomplete="off">
@@ -28,9 +29,10 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <input type="submit" value="Simpan" class="btn btn-success">
-                            &nbsp;
-                            <a href="{{ $back }}" class="btn btn-danger">Batal</a>
+                        </div>
+                        <div class="card-footer clearfix">
+                            <input type="submit" value="Submit" class="btn btn-success">&nbsp;
+                            <a href="{{ $back }}" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -38,13 +40,5 @@
             </div>
         </div>
     </div>
-    <!-- page body end -->
-    @include('includes.error')
-    @push('scripts')
-    <!-- Masking js -->
-    <script src="/assets/pages/form-masking/inputmask.js"></script>
-    <script src="/assets/pages/form-masking/jquery.inputmask.js"></script>
-    <script src="/assets/pages/form-masking/autoNumeric.js"></script>
-    <script src="/assets/pages/form-masking/form-mask.js"></script>
-    @endpush
+    <!-- page body end -->=
 </div>

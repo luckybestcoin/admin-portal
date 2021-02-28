@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Datamaster\Paket;
+namespace App\Http\Livewire\Master\Contract;
 
 use App\Models\Paket;
 use Illuminate\Support\Str;
@@ -46,7 +46,7 @@ class Form extends Component
     }
 
     public function render() {
-        return view('livewire.datamaster.paket.form')
+        return view('livewire.master.contract.form')
             ->extends('livewire.main', [
                 'breadcrumb' => ['Data Master', 'Paket', ($this->key? 'Edit Data': 'Tambah Data')],
                 'title' => ($this->key? 'Edit': 'Tambah').' Paket',

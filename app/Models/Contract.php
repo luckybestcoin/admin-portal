@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Paket extends Model
+class Contract extends Model
 {
     use HasFactory, Operator, SoftDeletes;
 
-    protected $table = 'paket';
-    protected $primaryKey = 'paket_id';
+    protected $table = 'contract';
+    protected $primaryKey = 'contract_id';
 
-    public function setPaketHargaAttribute($value){
-        $this->attributes['paket_harga'] = str_replace(",", "", $value);
+    public function setContractPriceAttribute($value){
+        $this->attributes['contract_price'] = str_replace(",", "", $value);
     }
 }
