@@ -48,8 +48,8 @@ return [
             'id' => 'memberregistration',
             'title' => 'Registration'
         ]]
-	]
-    // ,[
+    ],
+    // [
 	// 	'icon' => '<i class="nav-icon fa fa-cogs"></i>',
 	// 	'title' => 'Setup',
 	// 	'url' => 'javascript:void(0)',
