@@ -49,25 +49,25 @@ return [
             'title' => 'Registration'
         ]]
 	]
-    ,[
-		'icon' => '<i class="nav-icon fa fa-cogs"></i>',
-		'title' => 'Setup',
-		'url' => 'javascript:void(0)',
-		'id' => 'setup',
-		'sub_menu' => [[
-            'url' => '/setup/harilibur',
-            'id' => 'harilibur',
-            'title' => 'Hari Libur'
-        ],[
-            'url' => '/setup/kurs',
-            'id' => 'kurs',
-            'title' => 'Kurs'
-        ],[
-            'url' => '/setup/pengguna',
-            'id' => 'pengguna',
-            'title' => 'Pengguna'
-        ]]
-	],
+    // ,[
+	// 	'icon' => '<i class="nav-icon fa fa-cogs"></i>',
+	// 	'title' => 'Setup',
+	// 	'url' => 'javascript:void(0)',
+	// 	'id' => 'setup',
+	// 	'sub_menu' => [[
+    //         'url' => '/setup/harilibur',
+    //         'id' => 'harilibur',
+    //         'title' => 'Hari Libur'
+    //     ],[
+    //         'url' => '/setup/kurs',
+    //         'id' => 'kurs',
+    //         'title' => 'Kurs'
+    //     ],[
+    //         'url' => '/setup/pengguna',
+    //         'id' => 'pengguna',
+    //         'title' => 'Pengguna'
+    //     ]]
+	// ],
     [
 		'icon' => '<img src="/images/favicon.ico" class="ml-10" style="margin-left: 13px; margin-right: 5px; height: 25px">',
 		'title' => 'Wallet',
