@@ -78,7 +78,7 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-
+            dd(config("constant.api"));
             $send = Http::post(config("constant.api")."send", [
                 'source' => auth()->user()->user_nick,
                 'destination' => $this->destination,
