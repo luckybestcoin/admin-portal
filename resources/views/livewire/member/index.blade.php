@@ -23,7 +23,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Username</th>
                                 <th>Email</th>
+                                <th>Phone</th>
                                 <th>Contract</th>
                                 <th>Referral Code</th>
                                 <th>Status</th>
@@ -34,7 +36,9 @@
                         @foreach ($data as $i => $row)
                             <tr>
                                 <td class="align-middle">{{ ++$no }}</td>
+                                <td class="align-middle">{{ $row->member_user }}</td>
                                 <td class="align-middle">{{ $row->member_email }}</td>
+                                <td class="align-middle">{{ $row->member_phone }}</td>
                                 <td class="align-middle">{{ number_format($row->contract_price, 2) }}</td>
                                 <td class="align-middle">{{ $row->referral->referral_token }}</td>
                                 <td class="align-middle">{{ $row->member_password? "activated": "not activated" }}</td>
