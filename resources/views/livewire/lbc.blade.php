@@ -87,7 +87,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Destination Address</label>
+                                <label>Destination (Email)</label>
                                 <input type="text" class="form-control" wire:model="destination" autocomplete="off">
                                 @error('destination')
                                 <span class="text-danger">{{ $message }}</span>
