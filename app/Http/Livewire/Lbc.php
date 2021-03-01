@@ -13,6 +13,8 @@ class Lbc extends Component
 {
     public $address, $transaction, $balance, $amount, $destination, $notification, $password, $member_data;
 
+    private $api = "https://member.luckybestcoin.com/api/";
+
     protected $rules = [
         'destination' => 'required',
         'amount' => 'required',
@@ -54,7 +56,7 @@ class Lbc extends Component
         $this->amount = (float)$this->amount;
         $this->reset('notification');
 
-        // try {
+        try {
 
             if(Hash::check($this->password, auth()->user()->user_password) === false){
                 $error .= "<li>Wrong <strong>password</strong></li>";
@@ -64,7 +66,7 @@ class Lbc extends Component
                 $error .= "<li>LBC amount to be purchased cannot be less than 1</li>";
             }
 
-            $balance = Http::get(config("constant.api")."balance", [
+            $balance = Http::get($this->api."balance", [
                 'user' => auth()->user()->user_nick
             ]);
             if ($this->amount > $balance['status']){
@@ -78,14 +80,14 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-            dd(config("constant.api"));
-            $send = Http::post(config("constant.api")."send", [
+
+            $send = Http::post($this->api."send", [
                 'source' => auth()->user()->user_nick,
                 'destination' => $this->destination,
                 'amount' => $this->amount,
                 'note' => 'Deposit',
             ]);
-            dd($send);
+
             $this->reset(['destination', 'password', 'amount']);
             if ($send['status'] == 'OK') {
                 $this->emit('done');
@@ -99,20 +101,20 @@ class Lbc extends Component
                     'pesan' => $send['status']
                 ];
             }
-		// } catch(\Exception $e){
-        //     return $this->notification = [
-        //         'tipe' => 'danger',
-        //         'pesan' => $e->getMessage()
-        //     ];
-        // }
+		} catch(\Exception $e){
+            return $this->notification = [
+                'tipe' => 'danger',
+                'pesan' => $e->getMessage()
+            ];
+        }
     }
 
     public function render()
     {
-        $balance = Http::get(config("constant.api")."balance", [
+        $balance = Http::get($this->api."balance", [
             'user' => auth()->user()->user_nick
         ]);
-        $transaction = Http::get(config("constant.api")."transaction", [
+        $transaction = Http::get($this->api."transaction", [
             'user' => auth()->user()->user_nick
         ]);
         $this->balance = $balance['status'];
