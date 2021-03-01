@@ -66,7 +66,7 @@ class Lbc extends Component
                 'source' => auth()->user()->user_nick,
                 'destination' => $this->destination,
                 'amount' => $this->amount,
-                'note' => $this->note,
+                'note' => 'Deposit',
             ]);
 
             $this->reset(['destination', 'password', 'amount']);
