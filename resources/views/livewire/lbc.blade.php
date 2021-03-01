@@ -1,4 +1,8 @@
 <div>
+    @push('css')
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    @endpush
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -87,8 +91,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Destination (Email)</label>
-                                <input type="text" class="form-control" wire:model="destination" autocomplete="off">
+                                <label>Destination</label>
+                                <select class="select2 destination" wire:model="destination" style="width: 100%;">
+                                    <option value=""></option>
+                                    @foreach ($member_data as $member)
+                                    <option value="{{ $member->member_user }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
+                                    @endforeach
+                                </select>
                                 @error('destination')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -121,10 +130,26 @@
         </div>
     </section>
     @push('scripts')
+    <!-- Masking js -->
+        <script type="text/javascript" src="/plugins/select2/js/select2.full.min.js"></script>
         <script>
+            $(document).ready(function(){
+                init();
+            });
+
+            Livewire.on('reinitialize', () => {
+                init();
+            });
+
+            function init() {
+                $(".select2").select2();
+            }
+
             Livewire.on('show', id => {
                 $('#default-modal').modal('toggle');
+                $(".select2").select2();
             });
+
             Livewire.on('done', id => {
                 $('#default-modal').modal('toggle');
             });

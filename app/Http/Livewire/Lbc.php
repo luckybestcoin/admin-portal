@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Rate;
+use App\Models\Member;
 use App\Models\Wallet;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class Lbc extends Component
 {
-    public $address, $transaction, $balance, $amount, $destination, $notification, $password;
+    public $address, $transaction, $balance, $amount, $destination, $notification, $password, $member_data;
 
     protected $rules = [
         'destination' => 'required',
@@ -18,8 +19,14 @@ class Lbc extends Component
         'password' => 'required'
     ];
 
+    public function mount()
+    {
+        $this->member_data = Member::whereNotNull('member_password')->get();
+    }
+
     public function updated()
     {
+        $this->emit('reinitialize');
         // $this->validate();
     }
 
