@@ -54,7 +54,7 @@ class Lbc extends Component
         $this->amount = (float)$this->amount;
         $this->reset('notification');
 
-        try {
+        // try {
 
             if(Hash::check($this->password, auth()->user()->user_password) === false){
                 $error .= "<li>Wrong <strong>password</strong></li>";
@@ -85,7 +85,7 @@ class Lbc extends Component
                 'amount' => $this->amount,
                 'note' => 'Deposit',
             ]);
-
+            dd($send);
             $this->reset(['destination', 'password', 'amount']);
             if ($send['status'] == 'OK') {
                 $this->emit('done');
@@ -99,12 +99,12 @@ class Lbc extends Component
                     'pesan' => $send['status']
                 ];
             }
-		} catch(\Exception $e){
-            return $this->notification = [
-                'tipe' => 'danger',
-                'pesan' => $e->getMessage()
-            ];
-        }
+		// } catch(\Exception $e){
+        //     return $this->notification = [
+        //         'tipe' => 'danger',
+        //         'pesan' => $e->getMessage()
+        //     ];
+        // }
     }
 
     public function render()
