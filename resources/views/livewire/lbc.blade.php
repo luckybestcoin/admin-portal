@@ -95,8 +95,8 @@
                             </div>
                             <div class="form-group">
                                 <label>LBC Amount</label>
-                                <input type="number" class="form-control" wire:model="lbc_amount" autocomplete="off">
-                                @error('lbc_amount')
+                                <input type="number" class="form-control" wire:model="amount" autocomplete="off">
+                                @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
