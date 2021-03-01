@@ -19,6 +19,16 @@ class Lbc extends Component
         'password' => 'required'
     ];
 
+    protected $listeners = [
+        'set:setdestination' => 'setDestination'
+    ];
+
+    public function setDestination($destination)
+    {
+        $this->updated();
+        $this->destination = $destination;
+    }
+
     public function mount()
     {
         $this->member_data = Member::whereNotNull('member_password')->get();

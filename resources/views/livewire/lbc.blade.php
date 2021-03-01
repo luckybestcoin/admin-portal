@@ -142,12 +142,16 @@
             });
 
             function init() {
-                $(".select2").select2();
+                $(".destination").select2();
+
+                $(".destination").on("change", function(e) {
+                    window.livewire.emit('set:setdestination', $(this).select2('data')[0]['id']);
+                });
             }
 
             Livewire.on('show', id => {
                 $('#default-modal').modal('toggle');
-                $(".select2").select2();
+                init();
             });
 
             Livewire.on('done', id => {
