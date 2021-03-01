@@ -20,7 +20,7 @@ class Lbc extends Component
 
     public function updated()
     {
-        $this->validate();
+        // $this->validate();
     }
 
     public function show()
