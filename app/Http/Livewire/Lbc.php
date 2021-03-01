@@ -100,7 +100,7 @@ class Lbc extends Component
         ]);
         $this->balance = $balance['status'];
         $this->transaction = collect($transaction['status']);
-        return view('livewire.wallet')
+        return view('livewire.lbc')
             ->extends('livewire.main', [
                 'breadcrumb' => ['Wallet'],
                 'title' => 'Wallet'

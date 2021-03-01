@@ -88,8 +88,8 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Destination (Member Email)</label>
-                                <input type="text" class="form-control" wire:model="to_address" autocomplete="off">
-                                @error('to_address')
+                                <input type="text" class="form-control" wire:model="destination" autocomplete="off">
+                                @error('destination')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
