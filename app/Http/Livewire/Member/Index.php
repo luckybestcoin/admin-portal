@@ -36,7 +36,7 @@ class Index extends Component
 
     public function render()
     {
-        $data = Member::with('referral')->where('member_email', 'like', '%'.$this->cari.'%');
+        $data = Member::with('referral')->where('member_email', 'like', '%'.$this->cari.'%')->orWhere('member_user', 'like', '%'.$this->cari.'%');
 
         if ($this->deleted == 1){
             $data = $data->onlyTrashed();
