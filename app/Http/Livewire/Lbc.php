@@ -53,7 +53,6 @@ class Lbc extends Component
         $this->validate();
 
         $error = null;
-        $this->amount = (float)$this->amount;
         $this->reset('notification');
 
         try {
@@ -80,7 +79,7 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-            bitcoind()->move("administrator", $this->destination, $this->amount, 8, 1, "Deposit");
+            bitcoind()->move("administrator", $this->destination, $this->amount, 1, "Deposit");
 
             $this->reset(['destination', 'password', 'amount']);
             $this->emit('done');
