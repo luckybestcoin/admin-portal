@@ -26,7 +26,7 @@ class Lbc extends Component
 
     public function setDestination($destination)
     {
-        dd($destination);
+        // dd($destination);
         $this->updated();
         $this->destination = $destination;
     }
@@ -57,7 +57,7 @@ class Lbc extends Component
         $this->reset('notification');
 
         try {
-            if(Str::length($this->destination)){
+            if(Str::length($this->destination) == 0){
                 $error .= "<li>Destination has not been selected</li>";
             }
 
@@ -69,7 +69,7 @@ class Lbc extends Component
                 $error .= "<li>LBC amount to be purchased cannot be less than 1</li>";
             }
 
-            if($this->lbc_amount > bitcoind()->getbalance('administrator')[0]){
+            if($this->amount > bitcoind()->getbalance('administrator')[0]){
                 $error .= "<li>Account has insufficient funds.</li>";
             }
 
@@ -80,7 +80,7 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-            bitcoind()->move("administrator", $this->destination, $this->lbc_amount, 8, 1, "Deposit");
+            bitcoind()->move("administrator", $this->destination, $this->amount, 8, 1, "Deposit");
 
             $this->reset(['destination', 'password', 'amount']);
             $this->emit('done');
