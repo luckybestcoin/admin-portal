@@ -104,7 +104,7 @@
                             </div>
                             <div class="form-group">
                                 <label>LBC Amount</label>
-                                <input type="number" class="form-control" step="any" wire:model="amount" autocomplete="off">
+                                <input type="number" class="form-control" step="any" wire:model.defer="amount" autocomplete="off">
                                 @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -112,7 +112,7 @@
                             <hr>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" wire:model="password" autocomplete="off">
+                                <input type="password" class="form-control" wire:model.defer="password" autocomplete="off">
                                 @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
