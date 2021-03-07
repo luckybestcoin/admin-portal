@@ -36,10 +36,12 @@ class Index extends Component
 
     public function render()
     {
-        $data = Member::with('referral')->where('member_email', 'like', '%'.$this->cari.'%')->orWhere('member_user', 'like', '%'.$this->cari.'%');
+        $data = Member::with('referral')->where(fn ($q) => $q->where('member_email', 'like', '%'.$this->cari.'%')->orWhere('member_user', 'like', '%'.$this->cari.'%'));
 
         if ($this->deleted == 1){
-            $data = $data->onlyTrashed();
+            $data = $data->where('member_user', '=', null);
+        }else{
+            $data = $data->where('member_user', '!=', null);
         }
 
         $data = $data->paginate(10);

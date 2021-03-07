@@ -11,8 +11,8 @@
                     <div class="card-tools form-inline mt-2">
                         <div class="input-group input-group-sm">
                             <select class="form-control" data-style="btn-primary" wire:model="deleted" data-live-search="true">
-                                <option value="0">Exist</option>
-                                <option value="1">Deleted</option>
+                                <option value="0">Activated</option>
+                                <option value="1">Not Activated</option>
                             </select>
                             <input type="text" class="form-control" placeholder="Search" wire:model="cari">
                         </div>
