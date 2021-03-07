@@ -22,10 +22,10 @@
 
                             <ul class="list-group list-group-unbordered mb-3 table-responsive">
                                 <li class="list-group-item">
-                                    <b>Address</b>&nbsp;<a class="float-right">{{ auth()->user()->user_wallet }}</a>
+                                    <b>Username</b>&nbsp;<a class="float-right">administrator</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Balance</b>&nbsp;<a class="float-right"><strong>{{ $balance }} LBC</strong></a>
+                                    <b>Address</b>&nbsp;<a class="float-right">{{ bitcoind()->getaccountaddress('administrator') }}</a>
                                 </li>
                             </ul>
                             <button wire:click="show" class="btn btn-primary btn-block"> Send</button>
@@ -49,7 +49,7 @@
                                         <th>Comments</th>
                                         <th>Info</th>
                                     </tr>
-                                    @foreach ($transaction->sortByDesc('time') as $item)
+                                    @foreach (collect(bitcoind()->listtransactions("administrator", 30)->result())->sortByDesc('time') as $item)
                                     @if ($item['category'] == 'move')
                                     <tr>
                                         <td>{{ date('Y-m-d h:m:s', $item['time']) }}</td>
@@ -95,7 +95,7 @@
                                 <select class="select2 destination" wire:model="destination" style="width: 100%;">
                                     <option value=""></option>
                                     @foreach ($member_data as $member)
-                                    <option value="{{ $member->member_user }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
+                                    <option value="{{ $member->username }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
                                     @endforeach
                                 </select>
                                 @error('destination')

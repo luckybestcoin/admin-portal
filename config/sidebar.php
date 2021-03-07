@@ -19,21 +19,21 @@ return [
 		'url' => '/dashboard',
 		'id' => 'dashboard'
 	],
-    // [
-	// 	'icon' => '<i class="nav-icon fa fa-database"></i>',
-	// 	'title' => 'Master',
-	// 	'url' => 'javascript:void(0)',
-	// 	'id' => 'master',
-	// 	'sub_menu' => [[
-    //         'url' => '/master/contract',
-    //         'id' => 'mastercontract',
-    //         'title' => 'Contract'
-    //     ],[
-    //         'url' => '/master/achievement',
-    //         'id' => 'masterachievement',
-    //         'title' => 'Achievement'
-    //     ]]
-	// ],
+    [
+		'icon' => '<i class="nav-icon fa fa-database"></i>',
+		'title' => 'Master',
+		'url' => 'javascript:void(0)',
+		'id' => 'master',
+		'sub_menu' => [[
+            'url' => '/master/contract',
+            'id' => 'mastercontract',
+            'title' => 'Contract'
+        ],[
+            'url' => '/master/achievement',
+            'id' => 'masterachievement',
+            'title' => 'Achievement'
+        ]]
+	],
     [
 		'icon' => '<i class="nav-icon fa fa-users"></i>',
 		'title' => 'Member',
@@ -49,25 +49,25 @@ return [
             'title' => 'Registration'
         ]]
     ],
-    // [
-	// 	'icon' => '<i class="nav-icon fa fa-cogs"></i>',
-	// 	'title' => 'Setup',
-	// 	'url' => 'javascript:void(0)',
-	// 	'id' => 'setup',
-	// 	'sub_menu' => [[
-    //         'url' => '/setup/harilibur',
-    //         'id' => 'harilibur',
-    //         'title' => 'Hari Libur'
-    //     ],[
-    //         'url' => '/setup/kurs',
-    //         'id' => 'kurs',
-    //         'title' => 'Kurs'
-    //     ],[
-    //         'url' => '/setup/pengguna',
-    //         'id' => 'pengguna',
-    //         'title' => 'Pengguna'
-    //     ]]
-	// ],
+    [
+		'icon' => '<i class="nav-icon fa fa-cogs"></i>',
+		'title' => 'Setup',
+		'url' => 'javascript:void(0)',
+		'id' => 'setup',
+		'sub_menu' => [[
+            'url' => '/setup/harilibur',
+            'id' => 'harilibur',
+            'title' => 'Hari Libur'
+        ],[
+            'url' => '/setup/kurs',
+            'id' => 'kurs',
+            'title' => 'Kurs'
+        ],[
+            'url' => '/setup/pengguna',
+            'id' => 'pengguna',
+            'title' => 'Pengguna'
+        ]]
+	],
     [
 		'icon' => '<img src="/images/favicon.ico" class="ml-10" style="margin-left: 13px; margin-right: 5px; height: 25px">',
 		'title' => 'Wallet',

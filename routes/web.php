@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AutentikasiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\AutentikasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', \App\Http\Livewire\Dashboard::class);
     Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/balance', [WalletController::class, 'balance']);
 
     Route::prefix('master')->group(function () {
         Route::group(['middleware' => ['role_or_permission:super-admin|contract']], function () {

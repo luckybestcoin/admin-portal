@@ -6,14 +6,13 @@ use App\Models\Rate;
 use App\Models\Member;
 use App\Models\Wallet;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class Lbc extends Component
 {
-    public $address, $transaction, $balance, $amount, $destination, $notification, $password, $member_data;
-
-    private $api = "https://member.luckybestcoin.com/api/";
+    public $address, $amount, $destination, $notification, $password, $member_data;
 
     protected $rules = [
         'destination' => 'required',
@@ -27,13 +26,14 @@ class Lbc extends Component
 
     public function setDestination($destination)
     {
+        dd($destination);
         $this->updated();
         $this->destination = $destination;
     }
 
     public function mount()
     {
-        $this->member_data = Member::whereNotNull('member_password')->get();
+        $this->member_data = Member::whereNotNull('app_key')->get();
     }
 
     public function updated()
@@ -57,6 +57,9 @@ class Lbc extends Component
         $this->reset('notification');
 
         try {
+            if(Str::length($this->destination)){
+                $error .= "<li>Destination has not been selected</li>";
+            }
 
             if(Hash::check($this->password, auth()->user()->user_password) === false){
                 $error .= "<li>Wrong <strong>password</strong></li>";
@@ -66,10 +69,7 @@ class Lbc extends Component
                 $error .= "<li>LBC amount to be purchased cannot be less than 1</li>";
             }
 
-            $balance = Http::get($this->api."balance", [
-                'user' => auth()->user()->user_nick
-            ]);
-            if ($this->amount > $balance['status']){
+            if($this->lbc_amount > bitcoind()->getbalance('administrator')[0]){
                 $error .= "<li>Account has insufficient funds.</li>";
             }
 
@@ -80,27 +80,14 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-
-            $send = Http::post($this->api."send", [
-                'source' => auth()->user()->user_nick,
-                'destination' => $this->destination,
-                'amount' => $this->amount,
-                'note' => 'Deposit',
-            ]);
+            bitcoind()->move("administrator", $this->destination, $this->lbc_amount, 8, 1, "Deposit");
 
             $this->reset(['destination', 'password', 'amount']);
-            if ($send['status'] == 'OK') {
-                $this->emit('done');
-                return $this->notification = [
-                    'tipe' => 'success',
-                    'pesan' => 'Send LBC was successful!!!'
-                ];
-            }else{
-                return $this->notification = [
-                    'tipe' => 'danger',
-                    'pesan' => $send['status']
-                ];
-            }
+            $this->emit('done');
+            return $this->notification = [
+                'tipe' => 'success',
+                'pesan' => 'Send LBC was successful!!!'
+            ];
 		} catch(\Exception $e){
             return $this->notification = [
                 'tipe' => 'danger',
@@ -111,14 +98,6 @@ class Lbc extends Component
 
     public function render()
     {
-        $balance = Http::get($this->api."balance", [
-            'user' => auth()->user()->user_nick
-        ]);
-        $transaction = Http::get($this->api."transaction", [
-            'user' => auth()->user()->user_nick
-        ]);
-        $this->balance = $balance['status'];
-        $this->transaction = collect($transaction['status']);
         return view('livewire.lbc')
             ->extends('livewire.main', [
                 'breadcrumb' => ['Wallet'],
