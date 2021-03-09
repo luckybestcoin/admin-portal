@@ -7,7 +7,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Form</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body table-responsive p-1">
                             <table class="table">
                                 <tr>
                                     <th>No.</th>

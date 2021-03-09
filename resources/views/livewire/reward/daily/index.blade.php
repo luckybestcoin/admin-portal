@@ -5,15 +5,11 @@
                 <div class="card-header">
                     <div class="card-title">
                         @role('super-admin|user')
-                            <a href="{{ route('reward.daily.add') }}" class="btn btn-primary">New</a>
+                            <a href="{{ route('reward.daily.add') }}" class="btn btn-sm btn-primary">New</a>
                         @endrole
                     </div>
-                    <div class="card-tools form-inline">
+                    <div class="card-tools form-inline mt-1">
                         <div class="input-group input-group-sm">
-                            <select class="form-control" data-style="btn-primary" wire:model="deleted" data-live-search="true">
-                                <option value="0">Exist</option>
-                                <option value="1">Deleted</option>
-                            </select>
                             <input type="text" class="form-control" placeholder="Search" wire:model="cari">
                         </div>
                     </div>

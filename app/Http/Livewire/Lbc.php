@@ -6,7 +6,10 @@ use App\Models\Rate;
 use App\Models\Member;
 use App\Models\Wallet;
 use Livewire\Component;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
+use App\Models\TransactionDeposit;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
@@ -79,7 +82,22 @@ class Lbc extends Component
                     'pesan' => $error
                 ];
             }
-            bitcoind()->move("administrator", $this->destination, $this->amount, 1, "Deposit");
+
+            DB::transaction(function () {
+                $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
+
+                $trx = new Transaction();
+                $trx->transaction_id = $id;
+                $trx->transaction_information = "Deposit ".(Member::where('username', $this->destination)->get()->first()->member_user)." (".$this->amount." LBC)";
+                $trx->save();
+
+                $deposit = new TransactionDeposit();
+                $deposit->transaction_id = $id;
+                $deposit->transaction_deposit_information = "Deposit ".(Member::where('username', $this->destination)->get()->first()->member_user)." (".$this->amount." LBC)";
+                $deposit->transaction_deposit_lbc_amount = $this->amount;
+                $deposit->save();
+                bitcoind()->move("administrator", $this->destination, $this->amount, 1, "Deposit");
+            });
 
             $this->reset(['destination', 'password', 'amount']);
             $this->emit('done');

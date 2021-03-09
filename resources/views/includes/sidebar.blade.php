@@ -57,13 +57,12 @@
                                         $subSubMenu .= '</ul>';
                                     }
 
-                                    $active = $currentUrl == $menu['url']? 'active' : '';
+                                    $active = strpos($currentUrl, $menu['url']) === 0? 'active' : '';
 
                                     if ($active) {
                                         $GLOBALS['parent_active'] = true;
                                         $GLOBALS['active'][$GLOBALS['sub_level'] - 1] = true;
                                     }
-
                                     if (!empty($GLOBALS['active'][$currentLevel])) {
                                         $active = 'active';
                                     }

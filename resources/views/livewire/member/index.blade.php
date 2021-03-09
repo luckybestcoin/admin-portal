@@ -8,7 +8,7 @@
                             <a href="{{ route('member.registration') }}" class="btn btn-sm btn-primary">New</a>
                         @endrole
                     </div>
-                    <div class="card-tools form-inline mt-2">
+                    <div class="card-tools form-inline mt-1">
                         <div class="input-group input-group-sm">
                             <select class="form-control" data-style="btn-primary" wire:model="deleted" data-live-search="true">
                                 <option value="0">Activated</option>
