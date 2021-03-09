@@ -44,6 +44,16 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
+    Route::prefix('reward')->group(function () {
+        Route::group(['middleware' => ['role_or_permission:super-admin|daily']], function () {
+            Route::prefix('daily')->group(function ()
+            {
+                Route::get('/', \App\Http\Livewire\Reward\Daily\Index::class)->name('reward.daily');
+                Route::get('/add', \App\Http\Livewire\Reward\Daily\Form::class)->name('reward.daily.add');
+            });
+        });
+    });
+
     Route::get('/wallet', \App\Http\Livewire\Lbc::class)->name('wallet');
 
     Route::prefix('setup')->group(function () {

@@ -6,7 +6,7 @@ trait Operator{
     public static function bootOperator(){
         if(auth()->check()){
             static::creating(function ($model){
-                $model->pengguna_id = auth()->id();
+                $model->user_id = auth()->id();
             });
         }
     }

@@ -50,6 +50,17 @@ return [
         ]]
     ],
     [
+		'icon' => '<i class="nav-icon fa fa-trophy"></i>',
+		'title' => 'Reward',
+		'url' => 'javascript:void(0)',
+		'id' => 'reward',
+		'sub_menu' => [[
+            'url' => '/reward/daily',
+            'id' => 'rewarddaily',
+            'title' => 'Daily'
+        ]]
+    ],
+    [
 		'icon' => '<i class="nav-icon fa fa-cogs"></i>',
 		'title' => 'Setup',
 		'url' => 'javascript:void(0)',
