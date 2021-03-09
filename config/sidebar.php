@@ -55,6 +55,10 @@ return [
 		'url' => 'javascript:void(0)',
 		'id' => 'reward',
 		'sub_menu' => [[
+            'url' => '/reward/achievement',
+            'id' => 'rewardachievement',
+            'title' => 'Achievement'
+        ],[
             'url' => '/reward/daily',
             'id' => 'rewarddaily',
             'title' => 'Daily'

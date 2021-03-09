@@ -45,6 +45,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('reward')->group(function () {
+
+        Route::group(['middleware' => ['role_or_permission:super-admin|achievement']], function () {
+            Route::get('/achievement', \App\Http\Livewire\Reward\Turnover::class)->name('achievement');
+        });
         Route::group(['middleware' => ['role_or_permission:super-admin|daily']], function () {
             Route::prefix('daily')->group(function ()
             {
@@ -54,7 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
-    Route::get('/wallet', \App\Http\Livewire\Lbc::class)->name('wallet');
+    Route::group(['middleware' => ['role_or_permission:super-admin|wallet']], function () {
+        Route::get('/wallet', \App\Http\Livewire\Lbc::class)->name('wallet');
+    });
 
     Route::prefix('setup')->group(function () {
         Route::group(['middleware' => ['role_or_permission:super-admin|harilibur']], function () {

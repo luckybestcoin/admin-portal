@@ -15,6 +15,11 @@ class Member extends Model
 
     public function referral()
     {
-        return $this->hasOne(Referral::class, 'member_id')->withTrashed();
+        return $this->hasOne('App\Models\Referral', 'member_id')->withTrashed();
+    }
+
+    public function achievement()
+    {
+        return $this->hasMany('App\Models\Achievement', 'rating_id', 'rating_id');
     }
 }
