@@ -26,7 +26,7 @@
                                     @enderror
                                 </td>
                                 <td>
-                                    <input type="number" step="any" class="form-control" wire:model.defer="reward.{{ $i }}" autocomplete="off">
+                                    <input type="number" step="any" min="0" max="3" class="form-control" wire:model.defer="reward.{{ $i }}" autocomplete="off">
                                     @error('date.'.$i)
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

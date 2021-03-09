@@ -49,12 +49,13 @@ class Form extends Component
                 $transaction = [];
                 for ($i = 0; $i < $this->diff; $i++)
                 {
+                    $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
                     $daily = new Daily();
                     $daily->daily_date = $this->date[$i];
                     $daily->daily_reward = $this->reward[$i];
+                    $daily->transaction_id = $id;
                     $daily->save();
 
-                    $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
                     $trx = new Transaction();
                     $trx->transaction_id = $id;
                     $trx->transaction_information = "Daily Reward ".$this->date[$i]." (".$this->reward[$i]." %)";
