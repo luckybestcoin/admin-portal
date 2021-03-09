@@ -74,13 +74,13 @@ return [
             'id' => 'harilibur',
             'title' => 'Hari Libur'
         ],[
-            'url' => '/setup/kurs',
-            'id' => 'kurs',
-            'title' => 'Kurs'
-        ],[
             'url' => '/setup/pengguna',
             'id' => 'pengguna',
             'title' => 'Pengguna'
+        ],[
+            'url' => '/setup/rate',
+            'id' => 'rate',
+            'title' => 'Rate'
         ]]
 	],
     [

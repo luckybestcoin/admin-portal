@@ -63,24 +63,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('setup')->group(function () {
-        Route::group(['middleware' => ['role_or_permission:super-admin|harilibur']], function () {
-            Route::prefix('harilibur')->group(function () {
-                Route::get('/', \App\Http\Livewire\Setup\Harilibur\Index::class)->name('setup.harilibur');
-                Route::get('/add', \App\Http\Livewire\Setup\Harilibur\Form::class)->name('setup.harilibur.add');
-                Route::get('/edit/{key}', \App\Http\Livewire\Setup\Harilibur\Form::class)->name('setup.harilibur.edit');
-            });
-        });
         Route::group(['middleware' => ['role_or_permission:super-admin|kurs']], function () {
             Route::prefix('kurs')->group(function () {
                 Route::get('/', \App\Http\Livewire\Setup\Kurs\Form::class)->name('setup.kurs.add');
                 Route::get('/data', \App\Http\Livewire\Setup\Kurs\Index::class)->name('setup.kurs');
-            });
-        });
-        Route::group(['middleware' => ['role_or_permission:super-admin|pengguna']], function () {
-            Route::prefix('pengguna')->group(function () {
-                Route::get('/', \App\Http\Livewire\Setup\Pengguna\Index::class)->name('setup.pengguna');
-                Route::get('/add', \App\Http\Livewire\Setup\Pengguna\Form::class)->name('setup.pengguna.add');
-                Route::get('/edit/{key}', \App\Http\Livewire\Setup\Pengguna\Form::class)->name('setup.pengguna.edit');
             });
         });
     });
