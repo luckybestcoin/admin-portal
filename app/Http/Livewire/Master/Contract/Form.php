@@ -41,16 +41,14 @@ class Form extends Component
             $data->paket_pin = $this->pin;
             $data->save();
         }
-        session()->flash('messages', 'Berhasil menyimpan data');
         return $this->redirect($this->back);
     }
 
     public function render() {
         return view('livewire.master.contract.form')
             ->extends('livewire.main', [
-                'breadcrumb' => ['Data Master', 'Paket', ($this->key? 'Edit Data': 'Tambah Data')],
-                'title' => ($this->key? 'Edit': 'Tambah').' Paket',
-                'description' => 'Tambah data paket member yang tersedia'
+                'breadcrumb' => ['Data Master', 'Paket', ($this->key? 'Edit Data': 'Add Data')],
+                'title' => ($this->key? 'Edit': 'Add').' Paket'
             ])
             ->section('subcontent');
     }

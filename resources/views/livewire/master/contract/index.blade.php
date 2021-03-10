@@ -41,17 +41,17 @@
                                     <div class="btn-group">
                                     @if ($row->trashed())
                                         @if ($key === $row->getKey())
-                                            <a href="javascrpt:void(0)" wire:click="restore()" class="btn btn-success">Ya, Restore</a>
-                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Batal</a>
+                                            <a href="javascrpt:void(0)" wire:click="restore()" class="btn btn-success">Yes, Restore</a>
+                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Cancel</a>
                                         @else
                                             <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-success">Restore</a>
                                         @endif
                                     @else
                                         @if ($key === $row->getKey())
-                                            <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-danger">Ya, Hapus</a>
-                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-success">Batal</a>
+                                            <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-danger">Ya, Delete</a>
+                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-success">Cancel</a>
                                         @else
-                                            <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-danger">Hapus</a>
+                                            <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-danger">Delete</a>
                                             <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
