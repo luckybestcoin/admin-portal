@@ -48,7 +48,7 @@ class Turnover extends Component
                 $reward->transaction_reward_information = "Achievement for min. turnover ".$achievement->rating->rating_min_turnover.", Reward ".$achievement->rating->rating_reward;
                 $reward->transaction_reward_type = "Achievement";
                 $reward->transaction_reward_amount = $achievement->rating->rating_reward;
-                $reward->member_id = auth()->id();
+                $reward->member_id = $achievement->member_id;
                 $reward->save();
             });
 
