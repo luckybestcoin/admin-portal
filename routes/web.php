@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         {
             Route::get('/', \App\Http\Livewire\Member\Index::class)->name('member');
             Route::get('/registration', \App\Http\Livewire\Member\Registration::class)->name('member.registration');
+            Route::get('/edit', \App\Http\Livewire\Member\Edit::class)->name('member.edit');
         });
     });
 
@@ -63,10 +64,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('setup')->group(function () {
-        Route::group(['middleware' => ['role_or_permission:super-admin|kurs']], function () {
-            Route::prefix('kurs')->group(function () {
-                Route::get('/', \App\Http\Livewire\Setup\Kurs\Form::class)->name('setup.kurs.add');
-                Route::get('/data', \App\Http\Livewire\Setup\Kurs\Index::class)->name('setup.kurs');
+        Route::group(['middleware' => ['role_or_permission:super-admin|rate']], function () {
+            Route::prefix('rate')->group(function () {
+                Route::get('/', \App\Http\Livewire\Setup\Rate\Index::class)->name('setup.rate');
+                Route::get('/add', \App\Http\Livewire\Setup\Rate\Form::class)->name('setup.rate.add');
             });
         });
     });

@@ -70,14 +70,6 @@ return [
 		'url' => 'javascript:void(0)',
 		'id' => 'setup',
 		'sub_menu' => [[
-            'url' => '/setup/harilibur',
-            'id' => 'harilibur',
-            'title' => 'Hari Libur'
-        ],[
-            'url' => '/setup/pengguna',
-            'id' => 'pengguna',
-            'title' => 'Pengguna'
-        ],[
             'url' => '/setup/rate',
             'id' => 'rate',
             'title' => 'Rate'

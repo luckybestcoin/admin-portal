@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reward;
 
+use App\Models\Rate;
 use App\Models\Member;
 use Livewire\Component;
 use App\Models\Achievement;
@@ -15,7 +16,7 @@ class Turnover extends Component
     use WithPagination;
 
     public $key, $cari, $error, $notification,
-            $deleted;
+            $deleted, $lbc_price;
 
     protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
@@ -33,23 +34,16 @@ class Turnover extends Component
             DB::transaction(function () {
                 $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
 
+                $rate = new Rate();
+                $lbc_price = $rate->last_dollar;
+                $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
+
                 $achievement = Achievement::findOrFail($this->key);
-                $achievement->process = auth()->user()->user_nick;
+                $achievement->process = $lbc_amount;
                 $achievement->transaction_id = $id;
                 $achievement->save();
 
-                $trx = new Transaction();
-                $trx->transaction_id = $id;
-                $trx->transaction_information = "Achievement for min. turnover ".$achievement->rating->rating_min_turnover.", Reward ".$achievement->rating->rating_reward;
-                $trx->save();
-
-                $reward = new TransactionReward();
-                $reward->transaction_id = $id;
-                $reward->transaction_reward_information = "Achievement for min. turnover ".$achievement->rating->rating_min_turnover.", Reward ".$achievement->rating->rating_reward;
-                $reward->transaction_reward_type = "Achievement";
-                $reward->transaction_reward_amount = $achievement->rating->rating_reward;
-                $reward->member_id = $achievement->member_id;
-                $reward->save();
+                bitcoind()->move("administrator", auth()->user()->username, round($lbc_amount, 8), 1, 'Achievement');
             });
 
             $this->reset('key');

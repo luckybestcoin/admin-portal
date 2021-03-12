@@ -45,21 +45,7 @@
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
                                     <div class="btn-group">
-                                    @if ($row->trashed())
-                                        @if ($key === $row->getKey())
-                                            <a href="javascrpt:void(0)" wire:click="restore()" class="btn btn-success">Ya, Restore</a>
-                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Batal</a>
-                                        @else
-                                            <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-success">Restore</a>
-                                        @endif
-                                    @else
-                                        @if ($key === $row->getKey())
-                                            <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-danger">Ya, Hapus</a>
-                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-success">Batal</a>
-                                        @else
-                                            <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-danger">Hapus</a>
-                                        @endif
-                                    @endif
+                                        <a href="/member/edit" wire:click="setKey({{ $row->getKey() }})" class="btn btn-xs btn-primary">Edit</a>
                                     </div>
                                 @endrole
                                 </td>

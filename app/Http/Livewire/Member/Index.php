@@ -20,20 +20,6 @@ class Index extends Component
         $this->reset('key');
     }
 
-    public function setKey($key){
-        $this->key = $key;
-    }
-
-    public function hapus(){
-        Member::findOrFail($this->key)->delete();
-        $this->batal();
-    }
-
-    public function restore(){
-        Member::withTrashed()->findOrFail($this->key)->restore();
-        $this->batal();
-    }
-
     public function render()
     {
         $data = Member::with('referral')->where(fn ($q) => $q->where('member_email', 'like', '%'.$this->cari.'%')->orWhere('member_user', 'like', '%'.$this->cari.'%'));

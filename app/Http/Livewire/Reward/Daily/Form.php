@@ -29,7 +29,7 @@ class Form extends Component
         if($data->count() == 0){
             $last = date('Y-m-d', strtotime(Member::first()->created_at));
         }else{
-            $last = Carbon::parse($data->first()->daily_date)->format('Ymd');
+            $last = Carbon::parse($data->first()->daily_date)->format('Y-m-d');
         }
         $from = Carbon::parse($last);
         $now = Carbon::now();

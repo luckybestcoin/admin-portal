@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Operator;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rate extends Model
 {
-    use HasFactory;
+    use HasFactory, Operator;
 
     protected $table = 'rate';
     protected $primaryKey = 'rate_id';

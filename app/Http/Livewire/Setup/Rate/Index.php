@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Setup\Harilibur;
+namespace App\Http\Livewire\Setup\Rate;
 
-use App\Models\HariLibur;
+use App\Models\Rate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,9 +10,10 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $key, $cari, $error;
+    public $key, $cari, $error,
+            $deleted;
 
-    protected $queryString = ['cari'],
+    protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
 
     public function batal(){
@@ -24,22 +25,27 @@ class Index extends Component
     }
 
     public function hapus(){
-        HariLibur::findOrFail($this->key)->delete();
+        Rate::findOrFail($this->key)->delete();
         $this->batal();
     }
 
     public function render()
     {
-        $data = HariLibur::where('hari_libur_keterangan', 'like', '%'.$this->cari.'%')->paginate(10);
+        $data = Rate::where('created_at', 'like', '%'.$this->cari.'%');
+
+        if ($this->deleted == 1){
+            $data = $data->onlyTrashed();
+        }
+
+        $data = $data->orderBy('created_at', 'desc')->paginate(10);
         $this->emit('reinitialize');
-        return view('livewire.setup.harilibur.index', [
+        return view('livewire.setup.rate.index', [
             'data' => $data,
             'no' => ($this->page - 1) * 10
         ])
         ->extends('livewire.main', [
-            'breadcrumb' => ['Data Master', 'Hari Libur'],
-            'title' => 'Hari Libur',
-            'description' => 'Hari libur sesuai kalender'
+            'breadcrumb' => ['Setup', 'Rate'],
+            'title' => 'LBC Rate'
         ])
         ->section('subcontent');
     }
