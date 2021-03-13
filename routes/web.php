@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         {
             Route::get('/', \App\Http\Livewire\Member\Index::class)->name('member');
             Route::get('/registration', \App\Http\Livewire\Member\Registration::class)->name('member.registration');
-            Route::get('/edit', \App\Http\Livewire\Member\Edit::class)->name('member.edit');
+            Route::get('/edit/{key}', \App\Http\Livewire\Member\Edit::class)->name('member.edit');
         });
     });
 

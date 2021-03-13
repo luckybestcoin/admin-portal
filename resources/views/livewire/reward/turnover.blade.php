@@ -35,7 +35,7 @@
                                 <td class="align-middle">{{ $row->member->member_name }}</td>
                                 <td class="align-middle">{{ $row->member->member_email }}</td>
                                 <td class="align-middle">{{ $row->rating->rating_name.", ".number_format($row->rating->rating_min_turnover, 2) }}</td>
-                                <td class="align-middle">{{ $row->rating->rating_reward }}</td>
+                                <td class="align-middle">{{ "$ ". $row->rating->rating_reward." (".$row->rating->rating_reward/$rate->last_dollar." LBC)"  }}</td>
                                 <td class="align-middle">{{ $row->process }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')

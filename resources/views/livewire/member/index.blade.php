@@ -45,7 +45,7 @@
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
                                     <div class="btn-group">
-                                        <a href="/member/edit" wire:click="setKey({{ $row->getKey() }})" class="btn btn-xs btn-primary">Edit</a>
+                                        <a href="/member/edit/{{ $row->getKey() }}" class="btn btn-xs btn-primary">Edit</a>
                                     </div>
                                 @endrole
                                 </td>

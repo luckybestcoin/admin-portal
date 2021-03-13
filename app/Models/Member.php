@@ -22,4 +22,9 @@ class Member extends Model
     {
         return $this->hasMany('App\Models\Achievement', 'rating_id', 'rating_id');
     }
+
+    public function contract()
+    {
+        return $this->belongsTo('App\Models\Contract', 'contract_id');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use App\Models\Rate;
 use App\Models\Daily;
+use App\Models\Member;
 use Livewire\Component;
 
 class Dashboard extends Component

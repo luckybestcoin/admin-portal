@@ -16,7 +16,7 @@ class Turnover extends Component
     use WithPagination;
 
     public $key, $cari, $error, $notification,
-            $deleted, $lbc_price;
+            $deleted, $lbc_price, $rate;
 
     protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
@@ -29,21 +29,25 @@ class Turnover extends Component
         $this->key = $key;
     }
 
+    public function mount()
+    {
+        $this->rate = new Rate();
+    }
+
     public function process(){
         try {
             DB::transaction(function () {
                 $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
 
                 $achievement = Achievement::findOrFail($this->key);
-                $rate = new Rate();
-                $lbc_price = $rate->last_dollar;
+                $lbc_price = $this->rate->last_dollar;
                 $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
 
                 $achievement->process = $lbc_amount;
                 $achievement->transaction_id = $id;
                 $achievement->save();
 
-                bitcoind()->move("administrator", auth()->user()->username, round($lbc_amount, 8), 1, 'Achievement');
+                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
             });
 
             $this->reset('key');

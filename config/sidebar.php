@@ -29,9 +29,9 @@ return [
             'id' => 'mastercontract',
             'title' => 'Contract'
         ],[
-            'url' => '/master/achievement',
-            'id' => 'masterachievement',
-            'title' => 'Achievement'
+            'url' => '/master/rating',
+            'id' => 'masterrating',
+            'title' => 'Rating'
         ]]
 	],
     [
