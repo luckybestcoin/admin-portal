@@ -38,7 +38,7 @@ class Dashboard extends Component
     private function rate()
     {
         $data = Rate::orderBy('created_at', 'desc')->get();
-        $last = Carbon::parse($data->first()->created_at);
+        $last = Carbon::parse(date('Y-m-d', strtotime($data->first()->created_at)));
         $now = Carbon::now();
         $diff = $last->diffInDays($now);
         if ($diff > 0) {
