@@ -31,7 +31,7 @@ class Lbc extends Component
     {
         // dd($destination);
         $this->updated();
-        $this->destination = $destination;
+        $this->destination = Member::where('member_user', $destination)->get()->first()->username;
     }
 
     public function mount()

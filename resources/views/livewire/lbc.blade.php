@@ -95,7 +95,7 @@
                                 <select class="select2 destination" wire:model="destination" style="width: 100%;">
                                     <option value=""></option>
                                     @foreach ($member_data as $member)
-                                    <option value="{{ $member->username }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
+                                    <option value="{{ $member->member_user }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
                                     @endforeach
                                 </select>
                                 @error('destination')
