@@ -38,8 +38,8 @@ class Turnover extends Component
         try {
             DB::transaction(function () {
                 $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
-
                 $achievement = Achievement::findOrFail($this->key);
+                $member = Member::where('member_id', $achievement->member_id)->get()->first();
                 $lbc_price = $this->rate->last_dollar;
                 $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
 
@@ -47,7 +47,9 @@ class Turnover extends Component
                 $achievement->transaction_id = $id;
                 $achievement->save();
 
-                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
+                if (Achievement::where('username', $achievement->username)->get()->count() == 1) {
+                    bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
+                }
             });
 
             $this->reset('key');
