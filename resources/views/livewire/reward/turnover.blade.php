@@ -10,6 +10,7 @@
                                 <option value="0">Unprocessed</option>
                                 <option value="1">Processed</option>
                             </select>
+                            <input type="text" class="form-control" placeholder="Search" wire:model="search">
                         </div>
                     </div>
                 </div>

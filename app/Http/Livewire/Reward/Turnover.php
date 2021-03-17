@@ -15,10 +15,10 @@ class Turnover extends Component
 {
     use WithPagination;
 
-    public $key, $cari, $error, $notification,
-            $deleted, $lbc_price, $rate;
+    public $key, $error, $notification,
+            $deleted, $lbc_price, $rate, $search;
 
-    protected $queryString = ['cari', 'deleted'],
+    protected $queryString = ['search', 'deleted',],
             $paginationTheme = 'bootstrap';
 
     public function batal(){
@@ -67,7 +67,7 @@ class Turnover extends Component
 
     public function render()
     {
-        $data = Achievement::with('member')->with('rating');
+        $data = Achievement::with('member')->with('rating')->where('username', 'like', '%'.$this->search.'%');
 
         if ($this->deleted == 1){
             $data = $data->whereNotNull('process');
