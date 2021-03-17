@@ -41,16 +41,20 @@
                                 <td class="align-middle">{{ $row->process }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
-                                    <div class="btn-group">
-                                    @if (!$row->process)
-                                        @if ($key === $row->getKey())
-                                            <a href="javascrpt:void(0)" wire:click="process()" class="btn btn-success">Yes, Process</a>
-                                            <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Cancel</a>
-                                        @else
-                                            <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-success">Process</a>
-                                        @endif
+                                @if ($row->username)
+                                <div class="btn-group">
+                                @if (!$row->process)
+                                    @if ($key === $row->getKey())
+                                        <a href="javascrpt:void(0)" wire:click="process()" class="btn btn-success">Yes, Process</a>
+                                        <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Cancel</a>
+                                    @else
+                                        <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-success">Process</a>
                                     @endif
-                                    </div>
+                                @endif
+                                </div>
+                                @else
+                                <strong>No Wallet</strong>
+                                @endif
                                 @endrole
                                 </td>
                             </tr>
