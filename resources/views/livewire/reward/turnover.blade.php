@@ -19,6 +19,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Username</th>
+                                <th>Wallet</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Rating</th>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td class="align-middle">{{ ++$no }}</td>
                                 <td class="align-middle">{{ $row->member->member_user }}</td>
+                                <td class="align-middle">{{ $row->username }}</td>
                                 <td class="align-middle">{{ $row->member->member_name }}</td>
                                 <td class="align-middle">{{ $row->member->member_email }}</td>
                                 <td class="align-middle">{{ $row->rating->rating_name.", ".number_format($row->rating->rating_min_turnover, 2) }}</td>
