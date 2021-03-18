@@ -38,24 +38,16 @@ class Turnover extends Component
         try {
             DB::transaction(function () {
                 $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
-                $achievement = Achievement::findOrFail($this->key);
-                $sudah = Achievement::where('username', $achievement->username)->get()->count();
 
-                $member = Member::where('member_id', $achievement->member_id)->get()->first();
                 $lbc_price = $this->rate->last_dollar;
                 $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
 
-                if($sudah== 1) {
-                    $achievement->process = $lbc_amount;
-                }else{
-                    $achievement->process = "Duplikat";
-                }
+                $achievement = Achievement::findOrFail($this->key);
+                $achievement->process = $lbc_amount;
                 $achievement->transaction_id = $id;
                 $achievement->save();
 
-                if ($sudah== 1) {
-                    bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
-                }
+                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
             });
 
             $this->reset('key');
@@ -73,7 +65,7 @@ class Turnover extends Component
 
     public function render()
     {
-        $data = Achievement::with('member')->with('rating')->where('username', 'like', '%'.$this->search.'%');
+        $data = Achievement::with('rating')->whereHas('member', fn ($q) => $q->where('member_user', '%'.$this->search.'%')->orWhere('username', 'like', '%'.$this->search.'%'));
 
         if ($this->deleted == 1){
             $data = $data->whereNotNull('process');

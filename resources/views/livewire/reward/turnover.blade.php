@@ -34,7 +34,7 @@
                             <tr>
                                 <td class="align-middle">{{ ++$no }}</td>
                                 <td class="align-middle">{{ $row->member->member_user }}</td>
-                                <td class="align-middle">{{ $row->username }}</td>
+                                <td class="align-middle">{{ $row->member->username }}</td>
                                 <td class="align-middle">{{ $row->member->member_name }}</td>
                                 <td class="align-middle">{{ $row->member->member_email }}</td>
                                 <td class="align-middle">{{ $row->rating->rating_name.", ".number_format($row->rating->rating_min_turnover, 2) }}</td>
@@ -42,7 +42,7 @@
                                 <td class="align-middle">{{ $row->process }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
-                                @if ($row->username)
+                                @if ($row->member->username)
                                 <div class="btn-group">
                                 @if (!$row->process)
                                     @if ($key === $row->getKey())
