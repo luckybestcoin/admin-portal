@@ -14,7 +14,7 @@
                             <label>Destination</label>
                             <select class="form-control selectpicker" title="Nothing Selected" data-live-search="true" wire:model.defer="destination" data-style="btn-primary">
                                 @foreach ($member_data as $member)
-                                <option value="{{ $member->member_user }}">{{ $member->member_user." (".$member->member_name.", wallet : ".$member->username.")" }}</option>
+                                <option value="{{ $member->username }}">{{ $member->member_user." (".$member->member_name.", wallet : ".$member->username.")" }}</option>
                                 @endforeach
                             </select>
                             @error('destination')
