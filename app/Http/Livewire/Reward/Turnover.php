@@ -47,7 +47,7 @@ class Turnover extends Component
                 $achievement->transaction_id = $id;
                 $achievement->save();
 
-                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement');
+                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement '.$achievement->rating->rating_order);
             });
 
             $this->reset('key');
