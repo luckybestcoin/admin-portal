@@ -60,7 +60,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['role_or_permission:super-admin|wallet']], function () {
-        Route::get('/wallet', \App\Http\Livewire\Lbc::class)->name('wallet');
+        Route::prefix('wallet')->group(function ()
+        {
+            Route::get('/', \App\Http\Livewire\Lbc::class)->name('wallet');
+            Route::get('/send', \App\Http\Livewire\Send::class)->name('send');
+        });
     });
 
     Route::prefix('setup')->group(function () {

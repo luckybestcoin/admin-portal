@@ -1,8 +1,4 @@
 <div>
-    @push('css')
-    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    @endpush
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -28,7 +24,7 @@
                                     <b>Address</b>&nbsp;<a class="float-right">{{ bitcoind()->getaccountaddress('administrator') }}</a>
                                 </li>
                             </ul>
-                            <button wire:click="show" class="btn btn-primary btn-block"> Send</button>
+                            <a href="/wallet/send" class="btn btn-primary btn-block"> Send</a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -79,84 +75,5 @@
                 </div>
             </div>
         </div>
-        <div wire:ignore.self class="modal fade" id="default-modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <form wire:submit.prevent="submit">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Send</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Destination</label>
-                                <select class="select2 destination" wire:model="destination" style="width: 100%;">
-                                    <option value=""></option>
-                                    @foreach ($member_data as $member)
-                                    <option value="{{ $member->member_user }}">{{ $member->member_user." (".$member->member_name.")" }}</option>
-                                    @endforeach
-                                </select>
-                                @error('destination')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>LBC Amount</label>
-                                <input type="number" class="form-control" step="any" wire:model.defer="amount" autocomplete="off">
-                                @error('amount')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" wire:model.defer="password" autocomplete="off">
-                                @error('password')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="alert alert-warning">When you click <strong>Accept & Go</strong>, the process cannot be undone!!!</div>
-                            @include('includes.error-validation')
-                            @include('includes.notification')
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="submit" class="btn btn-primary">Accept & Go</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
     </section>
-    @push('scripts')
-    <!-- Masking js -->
-        <script type="text/javascript" src="/plugins/select2/js/select2.full.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                init();
-            });
-
-            Livewire.on('reinitialize', () => {
-                init();
-            });
-
-            function init() {
-                $(".destination").select2();
-
-                $(".destination").on("change", function(e) {
-                    window.livewire.emit('set:setdestination', $(this).select2('data')[0]['id']);
-                });
-            }
-
-            Livewire.on('show', id => {
-                $('#default-modal').modal('toggle');
-                init();
-            });
-
-            Livewire.on('done', id => {
-                $('#default-modal').modal('toggle');
-            });
-        </script>
-    @endpush
 </div>
