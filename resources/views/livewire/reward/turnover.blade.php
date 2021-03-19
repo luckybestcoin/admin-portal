@@ -8,7 +8,8 @@
                         <div class="input-group input-group-sm">
                             <select class="form-control" data-style="btn-primary" wire:model="deleted" data-live-search="true">
                                 <option value="0">Unprocessed</option>
-                                <option value="1">Processed</option>
+                                <option value="1">Sent</option>
+                                <option value="2">Not Sent</option>
                             </select>
                             <input type="text" class="form-control" placeholder="Search" wire:model="search">
                         </div>

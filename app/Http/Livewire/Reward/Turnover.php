@@ -92,7 +92,9 @@ class Turnover extends Component
         $data = Achievement::with('rating')->whereHas('member', fn ($q) => $q->where('member_user', '%'.$this->search.'%')->orWhere('username', 'like', '%'.$this->search.'%'));
 
         if ($this->deleted == 1){
-            $data = $data->whereNotNull('process');
+            $data = $data->where('process', '!=', 'Accomplished');
+        }else if ($this->deleted == 2){
+            $data = $data->where('process', 'Accomplished');
         }else{
             $data = $data->whereNull('process');
         }
