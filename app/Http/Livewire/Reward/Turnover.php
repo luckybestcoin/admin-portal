@@ -34,6 +34,29 @@ class Turnover extends Component
         $this->rate = new Rate();
     }
 
+    public function dont()
+    {
+        try {
+            DB::transaction(function () {
+                $achievement = Achievement::findOrFail($this->key);
+                $achievement->process = 'Accomplished';
+                $achievement->transaction_id = $id;
+                $achievement->save();
+            });
+
+            $this->reset('key');
+            return $this->notification = [
+                'tipe' => 'success',
+                'pesan' => "Achievement have been processed"
+            ];
+        } catch(\Exception $e){
+            return $this->notification = [
+                'tipe' => 'danger',
+                'pesan' => $e->getMessage()
+            ];
+        }
+    }
+
     public function process(){
         try {
             DB::transaction(function () {
