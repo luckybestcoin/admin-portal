@@ -89,7 +89,7 @@ class Turnover extends Component
 
     public function render()
     {
-        $data = Achievement::with('rating')->whereHas('member', fn ($q) => $q->where('member_user', '%'.$this->search.'%')->orWhere('username', 'like', '%'.$this->search.'%'));
+        $data = Achievement::with('rating')->whereHas('member', fn ($q) => $q->where('member_user', 'like', '%'.$this->search.'%')->orWhere('username', 'like', '%'.$this->search.'%'));
 
         if ($this->deleted == 1){
             $data = $data->where('process', '!=', 'Accomplished');
