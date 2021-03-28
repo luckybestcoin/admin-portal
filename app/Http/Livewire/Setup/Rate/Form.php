@@ -62,6 +62,5 @@ class Form extends Component
             'title' => 'Add LBC Rate'
         ])
         ->section('subcontent');
-        return view('livewire.setup.rate.form');
     }
 }

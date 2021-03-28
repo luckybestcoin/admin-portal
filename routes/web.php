@@ -74,5 +74,12 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/add', \App\Http\Livewire\Setup\Rate\Form::class)->name('setup.rate.add');
             });
         });
+        Route::group(['middleware' => ['role_or_permission:super-admin|user']], function () {
+            Route::prefix('user')->group(function () {
+                Route::get('/', \App\Http\Livewire\Setup\User\Index::class)->name('setup.user');
+                Route::get('/add', \App\Http\Livewire\Setup\User\Form::class)->name('setup.user.add');
+                Route::get('/edit/{id}', \App\Http\Livewire\Setup\User\Form::class)->name('setup.user.edit');
+            });
+        });
     });
 });

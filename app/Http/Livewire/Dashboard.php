@@ -31,7 +31,7 @@ class Dashboard extends Component
 
         $diff = $from->diffInDays($now);
         if ($diff > 0) {
-            array_push($this->notification, "Daily rewards on the date from ".Carbon::parse($last)->format('Y-m-d')." until ".Carbon::parse($last)->addDays($diff)->format('Y-m-d')." not yet given. <a href='/reward/daily/add'>Click here to process</a>");
+            array_push($this->notification, "Daily rewards on the date from ".Carbon::parse($last)->addDays(1)->format('Y-m-d')." until ".Carbon::parse($last)->addDays($diff)->format('Y-m-d')." not yet given. <a href='/reward/daily/add'>Click here to process</a>");
         }
     }
 
@@ -42,7 +42,7 @@ class Dashboard extends Component
         $now = Carbon::now();
         $diff = $last->diffInDays($now);
         if ($diff > 0) {
-            array_push($this->notification, "Rate LBC on the date from ".Carbon::parse($last)->format('Y-m-d')." until ".Carbon::parse($last)->addDays($diff)->format('Y-m-d')." not yet given. <a href='/setup/rate/add'>Click here to process</a>");
+            array_push($this->notification, "Rate LBC on the date from ".Carbon::parse($last)->addDays(1)->format('Y-m-d')." until ".Carbon::parse($last)->addDays($diff)->format('Y-m-d')." not yet given. <a href='/setup/rate/add'>Click here to process</a>");
         }
     }
 
