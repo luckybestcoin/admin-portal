@@ -76,6 +76,10 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
+    Route::group(['middleware' => ['role_or_permission:super-admin|transaction']], function () {
+        Route::get('/transaction', \App\Http\Livewire\Transactionhistory::class)->name('transaction');
+    });
+
     Route::prefix('setup')->group(function () {
         Route::group(['middleware' => ['role_or_permission:super-admin|rate']], function () {
             Route::prefix('rate')->group(function () {
