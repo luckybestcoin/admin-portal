@@ -35,7 +35,7 @@
                             <tr>
                                 <td class="align-middle">{{ ++$no }}</td>
                                 <td class="align-middle">{{ $row->user_nick }}</td>
-                                <td class="align-middle">{{ $row->user_nick }}</td>
+                                <td class="align-middle">{{ $row->user_name }}</td>
                                 <td>{{ ucFirst($row->getRoleNames()->count() > 0? $row->getRoleNames()->first(): null) }}</td>
                                 <td class="align-middle">{{ $row->getAllPermissions()->pluck('name') }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
