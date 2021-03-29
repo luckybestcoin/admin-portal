@@ -28,6 +28,13 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Note</label>
+                            <input type="text" class="form-control" wire:model.defer="note" autocomplete="off">
+                            @error('note')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <hr>
                         <div class="form-group">
                             <label>Password</label>

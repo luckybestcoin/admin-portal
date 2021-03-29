@@ -16,7 +16,7 @@ class Index extends Component
     protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
 
-    public function batal(){
+    public function cancel(){
         $this->reset('key');
     }
 
@@ -24,7 +24,7 @@ class Index extends Component
         $this->key = $key;
     }
 
-    public function hapus(){
+    public function delete(){
         Rate::findOrFail($this->key)->delete();
         $this->batal();
     }

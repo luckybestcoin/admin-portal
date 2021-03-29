@@ -34,8 +34,8 @@
                                 @role('super-admin|user')
                                     <div class="btn-group">
                                     @if ($key === $row->getKey())
-                                        <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-xs btn-danger">Ya, Delete</a>
-                                        <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-xs btn-success">Cancel</a>
+                                        <a href="javascrpt:void(0)" wire:click="delete()" class="btn btn-xs btn-danger">Yes, Delete</a>
+                                        <a href="javascrpt:void(0)" wire:click="cancel()" class="btn btn-xs btn-success">Cancel</a>
                                     @else
                                         <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-xs btn-danger">Delete</a>
                                         @endif

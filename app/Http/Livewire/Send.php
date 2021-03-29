@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Send extends Component
 {
-    public $address, $amount, $destination, $notification, $password, $member_data;
+    public $address, $amount, $destination, $notification, $password, $member_data, $note = "Deposit";
 
     protected $rules = [
         'destination' => 'required',
@@ -77,7 +77,7 @@ class Send extends Component
                 $deposit->transaction_deposit_information = "Deposit ".(Member::where('username', $this->destination)->get()->first()->member_user)." (".$this->amount." LBC)";
                 $deposit->transaction_deposit_lbc_amount = $this->amount;
                 $deposit->save();
-                bitcoind()->move("administrator", $this->destination, $this->amount, 1, "Deposit");
+                bitcoind()->move("administrator", $this->destination, $this->amount, 1, $this->note);
             });
 
             $this->reset(['destination', 'password', 'amount']);

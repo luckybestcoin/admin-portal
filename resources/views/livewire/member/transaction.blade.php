@@ -37,7 +37,7 @@
                         @foreach ($data->sortByDesc('time') as $item)
                         @if ($item['category'] == 'move')
                         <tr>
-                            <td>{{ date('Y-m-d h:m:s', $item['time']) }}</td>
+                            <td>{{ date('Y-m-d H:m:s', $item['time']) }}</td>
                             <td>{{ $item['otheraccount'] }}</td>
                             <td>{{ $item['category'] }}</td>
                             <td class="text-right">{{ number_format($item['amount'], 8) }}</td>
