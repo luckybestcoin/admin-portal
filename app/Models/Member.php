@@ -18,6 +18,11 @@ class Member extends Model
         return $this->hasOne('App\Models\Referral', 'member_id')->withTrashed();
     }
 
+    public function parent()
+    {
+        return $this->hasOne('App\Models\Member', 'member_id', 'member_parent')->withTrashed();
+    }
+
     public function achievement()
     {
         return $this->hasMany('App\Models\Achievement', 'rating_id', 'rating_id');

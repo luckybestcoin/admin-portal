@@ -40,8 +40,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('member')->group(function ()
         {
             Route::get('/', \App\Http\Livewire\Member\Index::class)->name('member');
+            Route::get('/data', \App\Http\Livewire\Member\Index::class)->name('member.data');
             Route::get('/registration', \App\Http\Livewire\Member\Registration::class)->name('member.registration');
             Route::get('/edit/{key}', \App\Http\Livewire\Member\Edit::class)->name('member.edit');
+            Route::get('/referral/{key}', \App\Http\Livewire\Member\Index::class)->name('member.referral');
+            Route::get('/transaction', \App\Http\Livewire\Member\Transaction::class)->name('member.referral');
+            Route::get('/appkey', \App\Http\Livewire\Member\Appkey::class)->name('member.referral');
         });
     });
 

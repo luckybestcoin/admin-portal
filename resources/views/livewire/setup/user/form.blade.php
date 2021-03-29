@@ -97,12 +97,8 @@
                 }
             });
 		}
-        document.addEventListener('DOMContentLoaded', function () {
-    		$('#kata_sandi').password();
-        });
         Livewire.on('reinitialize', id => {
             $('.selectpicker').selectpicker();
-    		$('#kata_sandi').password();
         });
     </script>
     @endpush

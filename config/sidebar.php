@@ -40,13 +40,21 @@ return [
 		'url' => 'javascript:void(0)',
 		'id' => 'member',
 		'sub_menu' => [[
-            'url' => '/member',
+            'url' => '/member/appkey',
+            'id' => 'memberappkey',
+            'title' => 'App Key'
+        ],[
+            'url' => '/member/data',
             'id' => 'memberdata',
             'title' => 'Member Data'
         ],[
             'url' => '/member/registration',
             'id' => 'memberregistration',
             'title' => 'Registration'
+        ],[
+            'url' => '/member/transaction',
+            'id' => 'membertransaction',
+            'title' => 'Transaction'
         ]]
     ],
     [

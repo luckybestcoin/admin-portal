@@ -16,13 +16,14 @@ class Index extends Component
     protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
 
-    public function batal(){
-        $this->reset('key');
+    public function referral($id)
+    {
+        # code...
     }
 
     public function render()
     {
-        $data = Member::with('referral')->where(fn ($q) => $q->where('member_email', 'like', '%'.$this->cari.'%')->orWhere('member_user', 'like', '%'.$this->cari.'%'));
+        $data = Member::with('referral')->where(fn ($q) => $q->where('member_email', 'like', '%'.$this->cari.'%')->orderBy('member_user')->orWhere('member_user', 'like', '%'.$this->cari.'%'));
 
         if ($this->deleted == 1){
             $data = $data->where('member_user', '=', null);

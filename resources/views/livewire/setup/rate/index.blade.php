@@ -34,10 +34,10 @@
                                 @role('super-admin|user')
                                     <div class="btn-group">
                                     @if ($key === $row->getKey())
-                                        <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-xs btn-danger">Ya, Hapus</a>
-                                        <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-xs btn-success">Batal</a>
+                                        <a href="javascrpt:void(0)" wire:click="hapus()" class="btn btn-xs btn-danger">Ya, Delete</a>
+                                        <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-xs btn-success">Cancel</a>
                                     @else
-                                        <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-xs btn-danger">Hapus</a>
+                                        <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-xs btn-danger">Delete</a>
                                         @endif
                                     </div>
                                 @endrole

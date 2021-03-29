@@ -25,6 +25,8 @@
                                 <th>#</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Wallet Username</th>
+                                <th>Referral</th>
                                 <th>Phone</th>
                                 <th>Contract</th>
                                 <th>Referral Code</th>
@@ -38,6 +40,8 @@
                                 <td class="align-middle">{{ ++$no }}</td>
                                 <td class="align-middle">{{ $row->member_user }}</td>
                                 <td class="align-middle">{{ $row->member_email }}</td>
+                                <td class="align-middle">{{ $row->username }}</td>
+                                <td class="align-middle">{{ $row->parent? $row->parent->member_user: "" }}</td>
                                 <td class="align-middle">{{ $row->member_phone }}</td>
                                 <td class="align-middle">{{ number_format($row->contract_price, 2) }}</td>
                                 <td class="align-middle">{{ $row->referral->referral_token }}</td>
@@ -45,6 +49,9 @@
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
                                     <div class="btn-group">
+                                        @if ($deleted == 1)
+                                        <a href="/member/referral/{{ $row->getKey() }}" class="btn btn-xs btn-primary">Resend Referral</a>
+                                        @endif
                                         <a href="/member/edit/{{ $row->getKey() }}" class="btn btn-xs btn-primary">Edit</a>
                                     </div>
                                 @endrole
