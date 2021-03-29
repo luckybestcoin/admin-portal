@@ -11,7 +11,7 @@ class Transaction extends Component
 
     public function mount()
     {
-        $this->data_member = Member::select('username')->whereNotNull('app_key')->groupBy('username')->get();
+        $this->data_member = Member::whereNotNull('app_key')->get();
         $this->data = [];
     }
 
