@@ -36,22 +36,27 @@ Route::group(['middleware' => ['auth']], function () {
         // });
     });
 
-    Route::group(['middleware' => ['role_or_permission:super-admin|member']], function () {
-        Route::prefix('member')->group(function ()
-        {
+    Route::prefix('member')->group(function ()
+    {
+        Route::group(['middleware' => ['role_or_permission:super-admin|memberappkey']], function () {
+            Route::get('/appkey', \App\Http\Livewire\Member\Appkey::class)->name('member.appkey');
+        });
+        Route::group(['middleware' => ['role_or_permission:super-admin|memberdata']], function () {
             Route::get('/', \App\Http\Livewire\Member\Index::class)->name('member');
             Route::get('/data', \App\Http\Livewire\Member\Index::class)->name('member.data');
-            Route::get('/registration', \App\Http\Livewire\Member\Registration::class)->name('member.registration');
             Route::get('/edit/{key}', \App\Http\Livewire\Member\Edit::class)->name('member.edit');
-            Route::get('/referral/{key}', \App\Http\Livewire\Member\Index::class)->name('member.referral');
-            Route::get('/transaction', \App\Http\Livewire\Member\Transaction::class)->name('member.referral');
-            Route::get('/appkey', \App\Http\Livewire\Member\Appkey::class)->name('member.referral');
+        });
+        Route::group(['middleware' => ['role_or_permission:super-admin|memberregistration']], function () {
+            Route::get('/registration', \App\Http\Livewire\Member\Registration::class)->name('member.registration');
+        });
+        Route::group(['middleware' => ['role_or_permission:super-admin|membertransaction']], function () {
+            Route::get('/transaction', \App\Http\Livewire\Member\Transaction::class)->name('member.transaction');
         });
     });
 
     Route::prefix('reward')->group(function () {
 
-        Route::group(['middleware' => ['role_or_permission:super-admin|achievement']], function () {
+        Route::group(['middleware' => ['role_or_permission:super-admin|rewardachievement']], function () {
             Route::get('/achievement', \App\Http\Livewire\Reward\Turnover::class)->name('achievement');
         });
         Route::group(['middleware' => ['role_or_permission:super-admin|daily']], function () {

@@ -50,7 +50,7 @@
                                 @role('super-admin|user')
                                     <div class="btn-group">
                                         @if ($deleted == 1)
-                                        <a href="/member/referral/{{ $row->getKey() }}" class="btn btn-xs btn-primary">Resend Referral</a>
+                                        <a href="javascript:;" wire:click="referral({{ $row->getKey() }})" class="btn btn-xs btn-success">Send Referral</a>
                                         @endif
                                         <a href="/member/edit/{{ $row->getKey() }}" class="btn btn-xs btn-primary">Edit</a>
                                     </div>
@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </div>
+            @include('includes.notification')
         </div>
     </section>
 </div>
