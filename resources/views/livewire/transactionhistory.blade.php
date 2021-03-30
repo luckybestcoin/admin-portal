@@ -31,14 +31,14 @@
                                 <td class="align-middle">{{ $row->created_at }}</td>
                                 <td class="align-middle">{{ $row->transaction_information }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
-                                @role('super-admin|user')
+                                @role('super-admin')
                                     <div class="btn-group">
                                     @if ($key === $row->getKey())
                                         <a href="javascrpt:void(0)" wire:click="delete()" class="btn btn-xs btn-danger">Yes, Delete</a>
                                         <a href="javascrpt:void(0)" wire:click="cancel()" class="btn btn-xs btn-success">Cancel</a>
                                     @else
                                         <a href="javascrpt:void(0)" wire:click="setKey('{{ $row->getKey() }}')" class="btn btn-xs btn-danger">Delete</a>
-                                        @endif
+                                    @endif
                                     </div>
                                 @endrole
                                 </td>
