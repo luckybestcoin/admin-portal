@@ -44,6 +44,7 @@
                             foreach ($value as $key => $menu) {
                                 $GLOBALS['active'][$GLOBALS['sub_level']] = '';
                                 $currentLevel = $GLOBALS['sub_level'];
+                                if(auth()->user()->can($menu['id'])){
                                     $GLOBALS['subparent_level'] = '';
 
                                     $subSubMenu = '';
@@ -73,38 +74,41 @@
                                             '. $subSubMenu .'
                                         </li>
                                     ';
+                                }
                             }
                             return $subMenu;
                         }
 
                         foreach (config('sidebar.menu') as $key => $menu) {
-                            $GLOBALS['parent_active'] = '';
+                            if(auth()->user()->can($menu['id'])){
+                                $GLOBALS['parent_active'] = '';
 
-                            $hasTitle = (!empty($menu['title'])) ? $menu['title'] : '';
-                            $hasCaret = !empty($menu['sub_menu']) ? '<i class="right fas fa-angle-left"></i>': '';
+                                $hasTitle = (!empty($menu['title'])) ? $menu['title'] : '';
+                                $hasCaret = !empty($menu['sub_menu']) ? '<i class="right fas fa-angle-left"></i>': '';
 
-                            $subMenu = '';
+                                $subMenu = '';
 
-                            if (!empty($menu['sub_menu'])) {
-                                $GLOBALS['sub_level'] = 0;
-                                $subMenu .= '<ul class="nav nav-treeview">';
-                                $subMenu .= renderSubMenu($menu['sub_menu'], $currentUrl);
-                                $subMenu .= '</ul>';
-                                $active = strpos($currentUrl, $menu['url']) === 0? 'menu-open' : '';
-                                $active = empty($active) && !empty($GLOBALS['parent_active']) ? 'menu-open' : $active;
-                            }else{
-                                $active = strpos($currentUrl, $menu['url']) === 0? 'active' : '';
+                                if (!empty($menu['sub_menu'])) {
+                                    $GLOBALS['sub_level'] = 0;
+                                    $subMenu .= '<ul class="nav nav-treeview">';
+                                    $subMenu .= renderSubMenu($menu['sub_menu'], $currentUrl);
+                                    $subMenu .= '</ul>';
+                                    $active = strpos($currentUrl, $menu['url']) === 0? 'menu-open' : '';
+                                    $active = empty($active) && !empty($GLOBALS['parent_active']) ? 'menu-open' : $active;
+                                }else{
+                                    $active = strpos($currentUrl, $menu['url']) === 0? 'active' : '';
+                                }
+
+                                echo '
+                                    <li class="nav-item '. (!empty($menu['sub_menu'])? $active: '') .'">
+                                        <a href="'. $menu['url'] .'" class="nav-link '.(strlen($active) > 0? 'active': '').'">
+                                            '. $menu['icon'] .'
+                                            <p>'. $hasTitle .' '.$hasCaret.'</p>
+                                        </a>
+                                        '.$subMenu.'
+                                    </li>
+                                ';
                             }
-
-                            echo '
-                                <li class="nav-item '. (!empty($menu['sub_menu'])? $active: '') .'">
-                                    <a href="'. $menu['url'] .'" class="nav-link '.(strlen($active) > 0? 'active': '').'">
-                                        '. $menu['icon'] .'
-                                        <p>'. $hasTitle .' '.$hasCaret.'</p>
-                                    </a>
-                                    '.$subMenu.'
-                                </li>
-                            ';
                         }
                     @endphp
                     <!-- Add icons to the links using the .nav-icon class
