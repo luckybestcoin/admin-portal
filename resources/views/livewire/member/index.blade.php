@@ -31,6 +31,7 @@
                                 <th>Contract</th>
                                 <th>Referral Code</th>
                                 <th>Status</th>
+                                <th>Registration Date</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                 <td class="align-middle">{{ number_format($row->contract_price, 2) }}</td>
                                 <td class="align-middle">{{ $row->referral->referral_token }}</td>
                                 <td class="align-middle">{{ $row->member_password? "activated": "not activated" }}</td>
+                                <td class="align-middle">{{ $row->created_at }}</td>
                                 <td class="with-btn-group align-middle text-right text-nowrap">
                                 @role('super-admin|user')
                                     <div class="btn-group">
