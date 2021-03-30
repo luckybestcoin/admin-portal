@@ -54,7 +54,7 @@ return [
         ],[
             'url' => '/member/transaction',
             'id' => 'membertransaction',
-            'title' => 'Transaction'
+            'title' => 'Wallet Member Transaction'
         ]]
     ],
     [
@@ -89,7 +89,7 @@ return [
 	],
     [
 		'icon' => '<i class="nav-icon fa fa-clock"></i>',
-		'title' => 'Transaction History',
+		'title' => 'Transaction System',
         'id' => 'transaction',
 		'url' => '/transaction'
 	],
