@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Member;
 use App\Models\Member;
 use Livewire\Component;
 use App\Models\Referral;
+use App\Jobs\SendEmailJob;
+use App\Mail\ReferralMail;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Mail;
 
@@ -29,19 +31,17 @@ class Index extends Component
         $member = Member::findOrFail($id);
         $token = Referral::where('member_id', $id)->first();
 
-        Mail::send('email.registration', [
+        $details = [
             'token' => $token->referral_token,
             'name' => $member->member_name,
             'contract' => $member->contract_price,
-            'email' => $member->member_email
-        ], function($message) use($member) {
-            $message->to($member->member_email, $member->member_name)->subject
-                ('Lucky Best Coin Registration Referral Code');
-            $message->from('no-reply@luckybestcoin.net', 'Admin LBC');
-        });
+            'email' => 'andifajarlah@gmail.com'
+        ];
+
+        dispatch(new SendEmailJob($details));
         $this->notification = [
             'tipe' => 'success',
-            'pesan' => 'Referral has been sent to '.$member->member_email
+            'pesan' => 'Email sending request to '.$member->member_email. ' has entered the queue'
         ];
     }
 
