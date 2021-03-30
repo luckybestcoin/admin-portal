@@ -18,10 +18,7 @@
 
                             <ul class="list-group list-group-unbordered mb-3 table-responsive">
                                 <li class="list-group-item">
-                                    <b>Username</b>&nbsp;<a class="float-right">administrator</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Address</b>&nbsp;<a class="float-right">{{ bitcoind()->getaccountaddress('administrator') }}</a>
+                                    <b>Username</b>&nbsp;<a class="float-right">{{ auth()->user()->username }}</a>
                                 </li>
                             </ul>
                             <a href="/wallet/send" class="btn btn-primary btn-block"> Send</a>
@@ -45,7 +42,7 @@
                                         <th>Comments</th>
                                         <th>Info</th>
                                     </tr>
-                                    @foreach (collect(bitcoind()->listtransactions("administrator", 30)->result())->sortByDesc('time') as $item)
+                                    @foreach (collect(bitcoind()->listtransactions(auth()->user()->username, 1000)->result())->sortByDesc('time') as $item)
                                     @if ($item['category'] == 'move')
                                     <tr>
                                         <td>{{ date('Y-m-d h:m:s', $item['time']) }}</td>
@@ -64,7 +61,7 @@
                                         <td class="text-right">{{ number_format($item['amount'], 8) }}</td>
                                         <td>{{ $item['confirmations'] }}</td>
                                         <td>{{ $item['label'] }}</td>
-                                        <td><a href="http://explore.luckybestcoin.com:3001/tx/{{ $item['txid'] }}" target="_blank">Info</a></td>
+                                        <td><a href="https://explore.luckybestcoin.com/tx/{{ $item['txid'] }}" target="_blank">Info</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
