@@ -20,9 +20,6 @@
                                 <li class="list-group-item">
                                     <b>Username</b>&nbsp;<a class="float-right">{{ auth()->user()->username }}</a>
                                 </li>
-                                <li class="list-group-item">
-                                    <b>Address</b>&nbsp;<a class="float-right">{{ bitcoind()->getaccountaddress(auth()->user()->username) }}</a>
-                                </li>
                             </ul>
                             <a href="/wallet/send" class="btn btn-primary btn-block"> Send</a>
                         </div>
