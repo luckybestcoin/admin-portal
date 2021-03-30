@@ -89,7 +89,7 @@ return [
 	],
     [
 		'icon' => '<i class="nav-icon fa fa-clock"></i>',
-		'title' => 'Transaction System',
+		'title' => 'System Transaction',
         'id' => 'transaction',
 		'url' => '/transaction'
 	],
