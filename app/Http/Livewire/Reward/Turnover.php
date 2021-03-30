@@ -37,12 +37,9 @@ class Turnover extends Component
     public function dont()
     {
         try {
-            DB::transaction(function () {
                 $achievement = Achievement::findOrFail($this->key);
                 $achievement->process = 'Accomplished';
-                $achievement->transaction_id = $id;
                 $achievement->save();
-            });
 
             $this->reset('key');
             return $this->notification = [
