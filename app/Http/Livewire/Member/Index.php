@@ -15,7 +15,7 @@ class Index extends Component
     use WithPagination;
 
     public $key, $cari, $error,
-            $deleted, $notification;
+            $deleted = 1, $notification;
 
     protected $queryString = ['cari', 'deleted'],
             $paginationTheme = 'bootstrap';
