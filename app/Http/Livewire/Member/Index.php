@@ -35,7 +35,7 @@ class Index extends Component
             'token' => $token->referral_token,
             'name' => $member->member_name,
             'contract' => $member->contract_price,
-            'email' => $member->member_email
+            'email' => 'andifajarlah@gmail.com'
         ];
 
         dispatch(new SendEmailJob($details));
