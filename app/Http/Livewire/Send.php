@@ -52,7 +52,7 @@ class Send extends Component
                 $error .= "<li>LBC amount to be purchased cannot be less than 1</li>";
             }
 
-            if($this->amount > bitcoind()->getbalance('administrator')[0]){
+            if($this->amount > bitcoind()->getbalance(auth()->user()->username)[0]){
                 $error .= "<li>Account has insufficient funds.</li>";
             }
 
@@ -77,7 +77,7 @@ class Send extends Component
                 $deposit->transaction_deposit_information = $this->note." (".$this->amount." LBC)";
                 $deposit->transaction_deposit_lbc_amount = $this->amount;
                 $deposit->save();
-                bitcoind()->move("administrator", $this->destination, $this->amount, 1, $this->note);
+                bitcoind()->move(auth()->user()->username, $this->destination, $this->amount, 1, $this->note);
             });
 
             $this->reset(['destination', 'password', 'amount']);
