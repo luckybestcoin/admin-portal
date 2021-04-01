@@ -30,8 +30,8 @@ class Transaction extends Component
         $this->emit('reinitialize');
         return view('livewire.member.transaction')
         ->extends('livewire.main', [
-            'breadcrumb' => ['Member', 'Transaction'],
-            'title' => 'Member Transaction'
+            'breadcrumb' => ['Member', 'Wallet Member Transaction'],
+            'title' => 'Wallet Member Transaction'
         ])
         ->section('subcontent');
     }

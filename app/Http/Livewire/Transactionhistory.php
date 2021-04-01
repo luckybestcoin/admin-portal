@@ -38,8 +38,8 @@ class Transactionhistory extends Component
             'no' => ($this->page - 1) * 10
         ])
         ->extends('livewire.main', [
-            'breadcrumb' => ['Transaction History'],
-            'title' => 'Transaction History'
+            'breadcrumb' => ['System Transaction'],
+            'title' => 'System Transaction'
         ])
         ->section('subcontent');
     }
