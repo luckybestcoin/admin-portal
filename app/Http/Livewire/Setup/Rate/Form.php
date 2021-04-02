@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Setup\Rate;
 
+use Carbon\Carbon;
 use App\Models\Rate;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -41,8 +42,8 @@ class Form extends Component
             $data = new Rate();
             $data->rate_price = $this->price;
             $data->rate_currency = 'USD';
-            $data->created_at = $this->datetime;
-            $data->updated_at = $this->datetime;
+            $data->created_at = Carbon::now();
+            $data->updated_at = Carbon::now();
             $data->save();
 
             return $this->redirect($this->back);

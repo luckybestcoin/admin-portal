@@ -1,7 +1,7 @@
 <div>
-    @push('style')
+    {{-- @push('style')
     <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous" />
-    @endpush
+    @endpush --}}
     <section class="content">
         <div class="container-fluid">
                 <!-- Session Idle Timeout card start -->
@@ -18,7 +18,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Date Time</label>
                                 <div class="input-group date" data-target-input="nearest">
                                     <input type="text" onchange="datetime()" id="datetimepicker" value="{{ $datetime }}" class="bg-white form-control datetimepicker-input" id="datetimeinput" data-target="#datetimepicker" readonly="readonly"/>
@@ -29,7 +29,7 @@
                                 @error('datetime')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer clearfix">
                             <input type="submit" value="Submit" class="btn btn-success">&nbsp;
@@ -46,7 +46,7 @@
         </div>
     </div>
     <!-- page body end -->
-    @push('scripts')
+    {{-- @push('scripts')
     <script src="/plugins/moment/moment.min.js"></script>
     <script src="/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
@@ -60,5 +60,5 @@
             window.livewire.emit('set:setdatetime', $("#datetimepicker").val());
         }
     </script>
-    @endpush
+    @endpush --}}
 </div>
