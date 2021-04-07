@@ -34,10 +34,10 @@ class Turnover extends Component
         $this->rate = new Rate();
     }
 
-    public function process()
+    public function process($key)
     {
         try {
-                $achievement = Achievement::findOrFail($this->key);
+                $achievement = Achievement::findOrFail($key);
                 $achievement->process = 'Accomplished';
                 $achievement->save();
 
