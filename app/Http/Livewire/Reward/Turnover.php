@@ -34,7 +34,7 @@ class Turnover extends Component
         $this->rate = new Rate();
     }
 
-    public function dont()
+    public function process()
     {
         try {
                 $achievement = Achievement::findOrFail($this->key);
@@ -54,35 +54,35 @@ class Turnover extends Component
         }
     }
 
-    public function process(){
-        try {
-            DB::transaction(function () {
-                $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
+    // public function process(){
+    //     try {
+    //         DB::transaction(function () {
+    //             $id = bitcoind()->getaccountaddress("administrator").date('Ymdhis').round(microtime(true) * 1000);
 
-                $achievement = Achievement::findOrFail($this->key);
+    //             $achievement = Achievement::findOrFail($this->key);
 
-                $lbc_price = $this->rate->last_dollar;
-                $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
+    //             $lbc_price = $this->rate->last_dollar;
+    //             $lbc_amount = $achievement->rating->rating_reward / $lbc_price;
 
-                $achievement->process = $lbc_amount;
-                $achievement->transaction_id = $id;
-                $achievement->save();
+    //             $achievement->process = $lbc_amount;
+    //             $achievement->transaction_id = $id;
+    //             $achievement->save();
 
-                bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement '.$achievement->rating->rating_order);
-            });
+    //             bitcoind()->move("administrator", $achievement->member->username, round($lbc_amount, 8), 1, 'Achievement '.$achievement->rating->rating_order);
+    //         });
 
-            $this->reset('key');
-            return $this->notification = [
-                'tipe' => 'success',
-                'pesan' => "Achievement have been processed"
-            ];
-        } catch(\Exception $e){
-            return $this->notification = [
-                'tipe' => 'danger',
-                'pesan' => $e->getMessage()
-            ];
-        }
-    }
+    //         $this->reset('key');
+    //         return $this->notification = [
+    //             'tipe' => 'success',
+    //             'pesan' => "Achievement have been processed"
+    //         ];
+    //     } catch(\Exception $e){
+    //         return $this->notification = [
+    //             'tipe' => 'danger',
+    //             'pesan' => $e->getMessage()
+    //         ];
+    //     }
+    // }
 
     public function render()
     {

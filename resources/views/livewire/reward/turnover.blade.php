@@ -47,8 +47,7 @@
                                 <div class="btn-group">
                                 @if (!$row->process)
                                     @if ($key === $row->getKey())
-                                        <a href="javascrpt:void(0)" wire:click="process()" class="btn btn-success">Send LBC</a>
-                                        <a href="javascrpt:void(0)" wire:click="dont()" class="btn btn-warning">Dont Send LBC</a>
+                                        <a href="javascrpt:void(0)" wire:click="process()" class="btn btn-success">Proccess</a>
                                         <a href="javascrpt:void(0)" wire:click="batal()" class="btn btn-danger">Cancel</a>
                                     @else
                                         <a href="javascrpt:void(0)" wire:click="setKey({{ $row->getKey() }})" class="btn btn-success">Process</a>
