@@ -12,7 +12,6 @@ class Edit extends Component
     public $key, $data, $back, $notification, $username, $name, $contract, $email, $phone_number, $password;
 
     protected $rules = [
-        'username' => 'required',
         'name' => 'required',
         'contract' => 'required',
         'email' => 'required|email',
