@@ -60,8 +60,8 @@
                                         <td>{{ $item['category'] }}</td>
                                         <td class="text-right">{{ number_format($item['amount'], 8) }}</td>
                                         <td>{{ $item['confirmations'] }}</td>
-                                        <td>{{ $item['label'] }}</td>
-                                        <td><a href="https://explore.luckybestcoin.com/tx/{{ $item['txid'] }}" target="_blank">Info</a></td>
+                                        <td>{{ $item['label']? $item['label']: '' }}</td>
+                                        <td><a href="https://explorer.luckybestcoin.com/tx/{{ $item['txid'] }}" target="_blank">Info</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
