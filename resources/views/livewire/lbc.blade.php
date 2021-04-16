@@ -39,7 +39,6 @@
                                         <th>Type</th>
                                         <th>Amount</th>
                                         <th>Confs</th>
-                                        <th>Comments</th>
                                         <th>Info</th>
                                     </tr>
                                     @foreach (collect(bitcoind()->listtransactions(auth()->user()->username, 1000)->result())->sortByDesc('time') as $item)
@@ -49,7 +48,6 @@
                                         <td>{{ $item['otheraccount'] }}</td>
                                         <td>{{ $item['category'] }}</td>
                                         <td class="text-right">{{ number_format($item['amount'], 8) }}</td>
-                                        <td>-</td>
                                         <td>{{ $item['comment'] }}</td>
                                         <td>-</td>
                                     </tr>
@@ -60,7 +58,6 @@
                                         <td>{{ $item['category'] }}</td>
                                         <td class="text-right">{{ number_format($item['amount'], 8) }}</td>
                                         <td>{{ $item['confirmations'] }}</td>
-                                        <td>{{ $item['label']? $item['label']: '' }}</td>
                                         <td><a href="https://explorer.luckybestcoin.com/tx/{{ $item['txid'] }}" target="_blank">Info</a></td>
                                     </tr>
                                     @endif
