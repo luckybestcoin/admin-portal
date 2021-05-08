@@ -94,7 +94,7 @@ return [
 		'url' => '/transaction'
 	],
     [
-		'icon' => '<img src="/images/favicon.ico" class="ml-10" style="margin-left: 13px; margin-right: 5px; height: 25px">',
+		'icon' => '<i class="nav-icon fa fa-wallet"></i>',
 		'title' => 'Wallet',
         'id' => 'wallet',
 		'url' => '/wallet'

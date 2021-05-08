@@ -1,6 +1,6 @@
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-1 sidebar-light-primary">
+        <aside class="main-sidebar elevation-1 sidebar-dark-primary">
             <!-- Brand Logo -->
             <a href="/" class="brand-link text-sm">
                 <img src="/images/luckybestcoin.png" alt="{{ config("app.name") }}" class="brand-image ">

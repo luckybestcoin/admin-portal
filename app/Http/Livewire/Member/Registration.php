@@ -119,7 +119,7 @@ class Registration extends Component
                 ], function($message) {
                     $message->to($this->email, $this->name)->subject
                         ('Lucky Best Coin Registration Referral Code');
-                    $message->from('no-reply@luckybestcoin.com', 'Admin LBC');
+                    $message->from('no-reply@richnwin.com', 'Admin Rich n Win');
                 });
             });
 
