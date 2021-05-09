@@ -118,7 +118,7 @@ class Registration extends Component
                     'email' => $this->email
                 ], function($message) {
                     $message->to($this->email, $this->name)->subject
-                        ('Lucky Best Coin Registration Referral Code');
+                        ('Rich n Win Registration Referral Code');
                     $message->from('no-reply@richnwin.com', 'Admin Rich n Win');
                 });
             });
